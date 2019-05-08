@@ -8,9 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+@class SGUnplashPhotoModel;
+
+typedef void(^SGUnsplashRequestSuccess)(NSArray<SGUnplashPhotoModel *> *photos);
+typedef void(^resultErrBlock)(NSError *error);
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SGUnsplashRequest : NSObject
+
++ (SGUnsplashRequest *)instance;
+
+- (void)requestPhotos:(NSNumber *)page
+              success:(SGUnsplashRequestSuccess)succBlock
+              failure:(resultErrBlock)errBlock;
 
 @end
 

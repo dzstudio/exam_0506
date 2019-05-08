@@ -1,6 +1,11 @@
 //
 //  Logger.h
+//  Exam_0506
 //
+//  Created by DillonZhang on 2019/5/7.
+//  Copyright © 2019 dzstudio. All rights reserved.
+//
+
 #ifdef DEBUG
 #define NAILog(logArea, format, ...) [[Logger instance] nLog:NLLInfo area:logArea function:(char *)__PRETTY_FUNCTION__ stringWithFormat:format, ##__VA_ARGS__];
 #define NADLog(logArea, format, ...) [[Logger instance] nLog:NLLDebug area:logArea function:(char *)__PRETTY_FUNCTION__ stringWithFormat:format, ##__VA_ARGS__];

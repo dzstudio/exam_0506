@@ -1,0 +1,9 @@
+{
+  "commitish" : "1.0.1",
+  "iOS" : [
+    {
+      "name" : "UnsplashPhotoPicker",
+      "hash" : "73ce6a2e3fdfc3320caf332d02c9ae19704077455f290f466e4b7aa1b09e3779"
+    }
+  ]
+}

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SGWaterFallLayout : UICollectionViewFlowLayout
 
+- (void)flowLayoutWithItemWidth:(CGFloat)width itemHeightArray:(NSArray<NSNumber *> *)heightArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

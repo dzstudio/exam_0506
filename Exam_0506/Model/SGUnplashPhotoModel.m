@@ -7,7 +7,21 @@
 //
 
 #import "SGUnplashPhotoModel.h"
+#import "JSONValueTransformer+CustomTransformer.h"
+
+@implementation SGUnplashPhotoUrlsModel
+
+@end
 
 @implementation SGUnplashPhotoModel
+
++ (JSONKeyMapper *)keyMapper {
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{
+                                                                @"photoId": @"id",
+                                                                @"createdAt": @"created_at",
+                                                                @"updatedAt": @"updated_at",
+                                                                @"desc": @"description"
+                                                                }];
+}
 
 @end

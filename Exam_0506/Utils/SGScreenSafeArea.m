@@ -1,9 +1,9 @@
 //
-//  JVScreenSafeArea.m
-//  oversea_jv
+//  SGScreenSafeArea.m
+//  Exam_0506
 //
-//  Created by 严虎 on 2018/10/16.
-//  Copyright © 2018 JD.com International Limited. All rights reserved.
+//  Created by DillonZhang on 2019/5/8.
+//  Copyright © 2019 dzstudio. All rights reserved.
 //
 
 #import "SGScreenSafeArea.h"

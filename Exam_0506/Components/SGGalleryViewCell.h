@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SGGalleryViewCell : UICollectionViewCell
 
+- (void)setImage:(NSString *)imgUrl;
+
 @end
 
 NS_ASSUME_NONNULL_END

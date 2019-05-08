@@ -10,7 +10,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol SGGalleryViewDelegate <NSObject>
+
+@optional
+- (void)onSGGalleryViewRefresh;
+- (void)onSGGalleryViewLoadMore;
+- (void)onSGGalleryViewTapDetail:(NSString *)photo;
+
+@end
+
 @interface SGGalleryView : UICollectionView
+
+@property (nonatomic, weak) NSArray *photos; // 数据源
+
+- (instancetype)initWithFrame:(CGRect)frame delegate:(id<SGGalleryViewDelegate>)delegate;
+- (void)refreshPhotos:(NSArray *)array;
+- (void)appendPhotos:(NSArray *)array;
 
 @end
 

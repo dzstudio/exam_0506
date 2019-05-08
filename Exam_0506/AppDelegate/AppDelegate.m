@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SGHomeViewController.h"
 
 @interface AppDelegate ()
 
@@ -14,9 +15,12 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  // Override point for customization after application launch.
+  SGHomeViewController *controller = [[SGHomeViewController alloc] initWithNibName:@"SGHomeViewController" bundle:nil];
+  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+  self.window.rootViewController = controller;
+  [self.window makeKeyAndVisible];
+  
   return YES;
 }
 
@@ -47,5 +51,33 @@
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - GCD Threads
+void exeBlockInMain(dispatch_block_t block) {
+  if ([NSThread isMainThread]) {
+    block();
+  } else {
+    dispatch_sync(dispatch_get_main_queue(), ^{
+      block();
+    });
+  }
+}
+
+void exeBlockInBack(dispatch_block_t block) {
+  dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    block();
+  });
+}
+
+void exeDelayBlockInMain(NSInteger second, dispatch_block_t block) {
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(second * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    block();
+  });
+}
+
+void exeDelayBlockInBack(NSInteger second, dispatch_block_t block) {
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(second * NSEC_PER_SEC)), dispatch_get_global_queue(0, 0), ^{
+    block();
+  });
+}
 
 @end

@@ -7,26 +7,49 @@
 //
 
 #import "SGHomeViewController.h"
+#import "SGGalleryView.h"
+#import "SGHomeViewModel.h"
 
-@interface SGHomeViewController ()
+@interface SGHomeViewController ()<SGGalleryViewDelegate>
+
+@property (nonatomic, strong) SGGalleryView *galleryView;
+@property (nonatomic, strong) SGHomeViewModel *galleryViewModel;
 
 @end
 
 @implementation SGHomeViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+  [super viewDidLoad];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)initUI {
+  CGFloat offset =  iPhoneX ? 45 : 64;
+  CGRect frame = CGRectMake(0, offset, SG_SCREEN_WIDTH, SG_SCREEN_HEIGHT - offset);
+  self.galleryView = [[SGGalleryView alloc] initWithFrame:frame delegate:self];
+  [self.view addSubview:self.galleryView];
 }
-*/
+
+- (void)initData {
+  self.galleryViewModel = [SGHomeViewModel new];
+  [self onSGGalleryViewRefresh];
+}
+
+#pragma mark - SGGalleryViewDelegate
+- (void)onSGGalleryViewRefresh {
+  [self.galleryViewModel refreshUnsplashPhotos:^(NSArray<SGUnplashPhotoModel *> *photos) {
+    [self.galleryView refreshPhotos:photos];
+  }];
+}
+
+- (void)onSGGalleryViewLoadMore {
+  [self.galleryViewModel loadUnsplashPhotos:^(NSArray<SGUnplashPhotoModel *> *photos) {
+    [self.galleryView appendPhotos:photos];
+  }];
+}
+
+- (void)onSGGalleryViewTapDetail:(NSString *)photo {
+
+}
 
 @end

@@ -1,0 +1,6 @@
+git "https://github.com/AFNetworking/AFNetworking.git"
+github "SDWebImage/SDWebImage"
+git "https://github.com/SnapKit/Masonry.git"
+github "jsonmodel/jsonmodel"
+github "CoderMJLee/MJRefresh"
+github "jdg/MBProgressHUD" ~> 1.1.0

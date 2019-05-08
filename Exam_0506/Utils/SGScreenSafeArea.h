@@ -1,15 +1,15 @@
 //
-//  JVScreenSafeArea.h
-//  oversea_jv
+//  SGScreenSafeArea.h
+//  Exam_0506
 //
-//  Created by 严虎 on 2018/10/16.
-//  Copyright © 2018 JD.com International Limited. All rights reserved.
+//  Created by DillonZhang on 2019/5/8.
+//  Copyright © 2019 dzstudio. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#define iphoneX [JVScreenSafeArea isIPhoneXSeries]
+#define iPhoneX [SGScreenSafeArea isIPhoneXSeries]
 
 @interface SGScreenSafeArea : NSObject
 
