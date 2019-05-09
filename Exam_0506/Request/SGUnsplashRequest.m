@@ -19,6 +19,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SGUnsplashRequest);
   return [self sharedSGUnsplashRequest];
 }
 
+// 请求Unsplash /photos接口获取照片数据，每页默认10张
 - (void)requestPhotos:(NSNumber *)page success:(SGUnsplashRequestSuccess)succBlock failure:(resultErrBlock)errBlock {
   [[UnsplashAPIHelper instance] asyncGetWithPath:@"/photos" andParams:@{@"page":page} andSuccess:^(id res) {
     NAILog(@"Request", @"%@", res);

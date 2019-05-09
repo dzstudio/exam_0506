@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SGHomeViewController.h"
+#import "SGBaseNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -17,8 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   SGHomeViewController *controller = [[SGHomeViewController alloc] initWithNibName:@"SGHomeViewController" bundle:nil];
+  SGBaseNavigationController *naviController = [[SGBaseNavigationController alloc] initWithRootViewController:controller];
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  self.window.rootViewController = controller;
+  self.window.rootViewController = naviController;
   [self.window makeKeyAndVisible];
   
   return YES;

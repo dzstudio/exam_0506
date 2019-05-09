@@ -33,6 +33,12 @@ static NSString * const GalleryCellReuseTag = @"sg_gallery_view_cell";
 }
 
 - (void)initUI {
+  // 注册下拉刷新组件
+  WeakSelf(self);
+  self.mj_header = [JVRefreshHeaderView headerWithRefreshingBlock:^{
+    [weakSelf.galleryDelegate onSGGalleryViewRefresh];
+  }];
+
   SGWaterFallLayout *layout = (SGWaterFallLayout *)self.collectionViewLayout;
   layout.minimumLineSpacing = 15;
   layout.minimumInteritemSpacing = 15;
@@ -55,23 +61,20 @@ static NSString * const GalleryCellReuseTag = @"sg_gallery_view_cell";
 - (void)refreshPhotos:(NSArray *)array {
   self.photos = array;
   [self updateFlowLayout];
-  [self reloadData];
+  [self.mj_header endRefreshing];
 }
 
 - (void)appendPhotos:(NSArray *)array {
-  // 计算需要插入的图片的索引
-  NSMutableArray *insertPath = [NSMutableArray new];
-  for (int i = 0; i < array.count - self.photos.count; i++) {
-    [insertPath addObject:[NSIndexPath indexPathForItem:(self.photos.count + i) inSection:1]];
-  }
   self.photos = array;
   [self updateFlowLayout];
-  [self insertItemsAtIndexPaths:insertPath];
 }
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  SGGalleryViewCell *cell = (SGGalleryViewCell *)[self cellForItemAtIndexPath:indexPath];
+  if ([self.galleryDelegate respondsToSelector:@selector(onSGGalleryViewTapDetail:)]) {
+    SGUnplashPhotoModel *photo = [self.photos objectAtIndex:indexPath.row];
+    [self.galleryDelegate onSGGalleryViewTapDetail:photo];
+  }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -95,8 +98,8 @@ static NSString * const GalleryCellReuseTag = @"sg_gallery_view_cell";
   SGGalleryViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:GalleryCellReuseTag forIndexPath:indexPath];
   SGUnplashPhotoModel *photo = [self.photos objectAtIndex:indexPath.row];
   [cell setImage:photo.urls.thumb];
-  // 判断加载百分比，达到80%即自动请求下一页
-  if ((float)(indexPath.row) / (float)(self.photos.count) >= 0.8) {
+  // 判断已加载数量，自动请求下一页
+  if (self.photos.count - indexPath.row <= 5) {
     if ([self.galleryDelegate respondsToSelector:@selector(onSGGalleryViewLoadMore)]) {
     	[self.galleryDelegate onSGGalleryViewLoadMore];
     }

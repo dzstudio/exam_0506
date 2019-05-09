@@ -7,7 +7,6 @@
 //
 
 #import "SGGalleryViewCell.h"
-#import <SDWebImage/SDWebImage.h>
 
 @interface SGGalleryViewCell()
 
@@ -32,7 +31,7 @@
 }
 
 - (void)setImage:(NSString *)imgUrl {
-  [_imageView sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"pic_placeholder"]];
+  [_imageView sd_setImageWithURL:[NSURL URLWithString:imgUrl]];
 }
 
 @end

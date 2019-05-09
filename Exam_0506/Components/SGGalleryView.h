@@ -10,12 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class SGUnplashPhotoModel;
+
 @protocol SGGalleryViewDelegate <NSObject>
 
 @optional
 - (void)onSGGalleryViewRefresh;
 - (void)onSGGalleryViewLoadMore;
-- (void)onSGGalleryViewTapDetail:(NSString *)photo;
+- (void)onSGGalleryViewTapDetail:(SGUnplashPhotoModel *)photo;
 
 @end
 

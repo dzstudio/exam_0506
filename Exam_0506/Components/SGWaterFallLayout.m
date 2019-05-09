@@ -14,7 +14,6 @@
  item 的高度数组
  */
 @property (nonatomic, copy) NSArray<NSNumber *> *arrItemHeight;
-
 @property (nonatomic, strong) NSArray<UICollectionViewLayoutAttributes *> *arrAttributes;
 
 @end
@@ -23,8 +22,8 @@
 
 /**
  瀑布流布局方法
- @param width item 的宽度
- @param heightArray item 的高度数组
+ @param width item的宽度
+ @param heightArray item的高度数组
  */
 - (void)flowLayoutWithItemWidth:(CGFloat)width itemHeightArray:(NSArray<NSNumber *> *)heightArray {
   self.itemSize = CGSizeMake(width, 0);
@@ -99,12 +98,11 @@
   // 在大小一样的情况下，有多少行
   NSInteger nRows = ([self.arrItemHeight count] + nItemInRow - 1) / nItemInRow;
   self.itemSize = CGSizeMake(self.itemSize.width, (fLongLength + self.minimumLineSpacing) / nRows - self.minimumLineSpacing);
-
 }
 
 // 返回所有的 cell 布局数组
 -(NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-  return self.arrAttributes;
+  return [[NSArray alloc] initWithArray:self.arrAttributes copyItems:YES];
 }
 
 @end

@@ -20,6 +20,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LCU-Ol-MMt">
                         <rect key="frame" x="0.0" y="0.0" width="273" height="285"/>
+                        <color key="backgroundColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                 </subviews>
             </view>

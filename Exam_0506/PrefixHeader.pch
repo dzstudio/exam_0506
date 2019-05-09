@@ -9,6 +9,8 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+#define SGAppDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
+
 #define WeakSelf(obj)            __weak typeof(obj) weakSelf = obj
 #define StrongSelf               __strong __typeof(weakSelf) strongSelf = weakSelf
 
@@ -20,13 +22,18 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
-#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <MBProgressHUD/MBProgressHUD.h>
+#import <SDWebImage/SDWebImage.h>
 
 #import "SynthesizeSingleton.h"
 #import "Logger.h"
 #import "NSNull+Safe.h"
 #import "SGUnsplashRequest.h"
 #import "SGScreenSafeArea.h"
+#import "AppDelegate.h"
+#import "MBProgressHUD+Custom.h"
+#import "UIColor+Extend.h"
+#import "JVRefresh.h"
 
 #endif /* PrefixHeader_pch */
